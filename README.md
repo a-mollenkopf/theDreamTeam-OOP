@@ -12,12 +12,12 @@ Start by cloning the repo from Github
 open gitbash or terminal and type git clone and paste the link you copied and hit enter
 Code . space to open
 Right click on index.html and hit open in default browser
-Naviagte through the site!
+Navigate through the site!
 
 
 # Features
 
-This project tested my knowledge of CLI's and the use of node,js to accomplish that. This CLI comesup and asks you a series of prompts and takes those answers and generates them into a README.md file or in this case, a sampleREADME.md file. You would be able to use this generator for nay future projects so it doesnt take away from you time in actually creating the project.
+This project tested my knowledge of CLI's and the use of node.js to accomplish that. This CLI comesup and asks you a series of prompts and takes those answers and generates them into an HTML page that shows your DREAM TEAM. 
 
 
 [github profile] (https://github.com/a-mollenkopf)
@@ -38,12 +38,7 @@ This project tested my knowledge of CLI's and the use of node,js to accomplish t
 
 
 # Credits
-
-https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba
-
-https://www.npmjs.com/package/inquirer#questions
-
-https://nodejs.org/api/fs.html#fs_fs_appendfile_path_data_options_callback
+https://www.npmjs.com/package/inquirer
 
 # License
 
