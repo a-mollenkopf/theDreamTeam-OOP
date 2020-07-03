@@ -1,6 +1,6 @@
-const Manager = require("./Manager");
-const Engineer = require("./Engineer");
-const Intern = require("./Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -10,7 +10,7 @@ const allEmployees = [];
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./htmlRenderer");
+const render = require("./lib/htmlRenderer");
 const { inherits } = require("util");
 
 
@@ -64,6 +64,7 @@ function askEmployeeInfo(data) {
               allEmployees.push(newManager);
               addUser();
             });
+            break;
         case "Engineer":
           return inquirer
             .prompt([
@@ -98,6 +99,7 @@ function askEmployeeInfo(data) {
               allEmployees.push(newEngineer);
               addUser();
             });
+            break;
         case "Intern":
           return inquirer
             .prompt([
@@ -132,10 +134,12 @@ function askEmployeeInfo(data) {
               allEmployees.push(newIntern);
               addUser();
             });
+            break;
         }
     });
 
 };
+
 function addUser(data) {
     return inquirer.prompt([
         {
@@ -147,9 +151,18 @@ function addUser(data) {
         }
     ])
     .then(function(parameter) {
-        if(parameter.confirm === true) {
-         return askEmployeeInfo();
-    }; 
+        if(parameter.addUser === true) {
+          askEmployeeInfo();
+    } else {
+        const html = render(allEmployees);
+        fs.writeFile(outputPath, html, function(err) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log("It worked!");
+            }
+        })
+    }
   });
 };
 
