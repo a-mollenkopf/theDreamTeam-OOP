@@ -4,6 +4,8 @@ const Intern = require("./Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const allEmployees = [];
+
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -11,8 +13,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./htmlRenderer");
 const { inherits } = require("util");
 
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
 function askEmployeeInfo(data) {
   return inquirer
     .prompt([
@@ -127,19 +132,33 @@ function askEmployeeInfo(data) {
               allEmployees.push(newIntern);
               addUser();
             });
-      }
+        }
     });
-}
+
+};
+function addUser(data) {
+    return inquirer.prompt([
+        {
+            type: "confirm",
+            name: "addUser",
+            message: "Would you like to add another employee?",
+            choices: ("y/n"),
+                 
+        }
+    ])
+    .then(function(parameter) {
+        if(parameter.confirm === true) {
+         return askEmployeeInfo();
+    }; 
+  });
+};
 
 
 
+askEmployeeInfo();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-
-// const render = something => {
-
-// }
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
